@@ -1,9 +1,15 @@
 <h3>cart</h3>
 
-<div class="cart-item" *ngFor="let item of items">
-  <span>{{item.name}}</span>
-  <span>{{item.price | currency}}</span>
-
+<div class="cart-item" *ngFor="let item of items; index as pos">
+	<span>{{ item.name }}</span>
+	<span>{{ item.price | currency }}</span>
+	<button class="material-icons" (click)="removeItem(pos)">
+		delete_outline
+	</button>
 </div>
 
 <a [routerLink]="['/shipping']">shipping costs</a>
+<div>
+	<button (click)="clearCart()">empty cart</button>
+	<button (click)="makeBuy()">confirm buy</button>
+</div>

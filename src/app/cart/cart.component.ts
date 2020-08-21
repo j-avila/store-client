@@ -17,4 +17,16 @@ export class CartComponent implements OnInit {
     this.items = this.cartService.getItems();
   }
 
+  makeBuy() {
+    window.alert('buy successfull!');
+  }
+
+  removeItem(pos: number) {
+    this.items = this.items.filter((item, index) => index !== pos)
+  }
+
+  clearCart() {
+    this.items = []
+  }
+
 }

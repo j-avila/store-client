@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { ProductsService } from '../products.service'
-// import { products } from '../products';
+import { CartService } from '../cart.service';
 
 @Component({
 	selector: 'app-product-list',
@@ -10,7 +10,7 @@ import { ProductsService } from '../products.service'
 export class ProductListComponent {
 	products
 
-	constructor(private productService: ProductsService) { }
+	constructor(private productService: ProductsService, private cartService: CartService) { }
 
 	ngOnInit() {
 		this.productService.getItems()
@@ -30,6 +30,12 @@ export class ProductListComponent {
 
 	onNotify() {
 		window.alert('We will notify you when the product goes on sale')
+	}
+
+
+	addToCart(product) {
+		this.cartService.addToCart(product)
+		window.alert('your product has been added to the cart')
 	}
 }
 
