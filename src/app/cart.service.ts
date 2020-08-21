@@ -13,16 +13,21 @@ export class CartService {
     return this.items;
   }
 
-  addToCart(product){
+  addToCart(product) {
     this.items.push(product);
   }
 
-  clearCart(){
+  removeItem(pos) {
+    this.items.filter((item, index) => index !== pos)
+    return this.items
+  }
+
+  clearCart() {
     this.items = [];
     return this.items;
   }
 
-  getShippingPrices(){
+  getShippingPrices() {
     return this.http.get('/assets/shipping.json');
   }
 }

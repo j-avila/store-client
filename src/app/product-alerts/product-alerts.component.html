@@ -1,7 +1,6 @@
 <p *ngIf="product.price > 700">
-	<button (click)="notify.emit()">
-		<span class="material-icons">
-			notification_important </span
-		>notify me
+	<button class="alert" (click)="notify.emit()">
+		<i class="material-icons">notification_important </i>
+		notify me
 	</button>
 </p>

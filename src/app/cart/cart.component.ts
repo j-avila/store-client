@@ -4,10 +4,10 @@ import { CartService } from '../cart.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  items;
+  items: any[];
 
   constructor(
     private cartService: CartService
@@ -18,15 +18,18 @@ export class CartComponent implements OnInit {
   }
 
   makeBuy() {
-    window.alert('buy successfull!');
+    window.alert('buy successfull!')
+    this.items = []
   }
 
   removeItem(pos: number) {
-    this.items = this.items.filter((item, index) => index !== pos)
+    this.items = this.cartService.removeItem((pos))
+    console.log(pos)
   }
 
   clearCart() {
     this.items = []
+    this.cartService.clearCart()
   }
 
 }

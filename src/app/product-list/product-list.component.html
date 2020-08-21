@@ -1,24 +1,38 @@
-<h2>
-	products:
-	<div *ngFor="let product of products">
-		<a
-			[title]="product.name + ' details'"
-			[routerLink]="['/products', product.id]"
-		>
-			<h3>{{ product.name }}</h3>
-		</a>
-		<p *ngIf="product.description">{{ product.description }}</p>
-		<button (click)="share()">share</button>
-		<button (click)="addToCart(product)">add to cart</button>
-		<app-product-alerts
-			[product]="product"
-			(notify)="onNotify()"
-		></app-product-alerts>
-	</div>
-</h2>
+<div class="products-list">
+	<h2>products:</h2>
 
-<!-- 
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
--->
+	<div *ngIf="products?.length >= 0; else elseBlock">
+		<div class="product" *ngFor="let product of products">
+			<a
+				[title]="product.name + ' details'"
+				[routerLink]="['/products', product.id]"
+			>
+				<h3>{{ product.name }}</h3>
+			</a>
+			<label
+				>quantity: <input type="number" (ngModelChange)="(quantity)"
+			/></label>
+			<p *ngIf="product.description">{{ product.description }}</p>
+			<div class="actions">
+				<button (click)="share()">
+					<i class="material-icons">share</i>
+					share
+				</button>
+				<button (click)="addToCart(product)">
+					<i class="material-icons">plus_one</i>
+					add to cart
+				</button>
+				<app-product-alerts
+					[product]="product"
+					(notify)="onNotify()"
+				></app-product-alerts>
+			</div>
+		</div>
+	</div>
+
+	<ng-template #elseBlock>
+		<div class="no-data">
+			<img src="../../assets/fracaso.svg" alt="" />
+		</div>
+	</ng-template>
+</div>

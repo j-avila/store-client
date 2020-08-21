@@ -5,10 +5,12 @@ import { CartService } from '../cart.service';
 @Component({
 	selector: 'app-product-list',
 	templateUrl: './product-list.component.html',
-	styleUrls: ['./product-list.component.css'],
+	styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent {
-	products
+	products: Object
+	quantity: number
+	productAdded: object
 
 	constructor(private productService: ProductsService, private cartService: CartService) { }
 
@@ -33,14 +35,10 @@ export class ProductListComponent {
 	}
 
 
-	addToCart(product) {
-		this.cartService.addToCart(product)
+	addToCart(product: {}) {
+		this.productAdded = { ...product, quantity: this.quantity }
+		this.cartService.addToCart(this.productAdded)
 		window.alert('your product has been added to the cart')
 	}
 }
 
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
