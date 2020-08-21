@@ -1,10 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment'
+interface Order {
+  status: number,
+  total_price: number,
+  // [key: string]: any[],
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class CartService {
   items = [];
   constructor(
@@ -35,7 +43,7 @@ export class CartService {
     return this.http.get('/assets/shipping.json');
   }
 
-  checkout(items: any[]) {
+  checkout(items: Order) {
     interface data {
       main: string,
       [key: string]: any,

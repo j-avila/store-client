@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 
+interface Order {
+  status: number,
+  total_price: number,
+  // [key: string]: any[],
+}
+
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
 
-interface Order {
-  status: number,
-  total_price: number,
-  // [key: string]: any[],
-}
 
 export class CartComponent implements OnInit {
   items: any[]
