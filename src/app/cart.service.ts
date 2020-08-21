@@ -10,6 +10,9 @@ export class CartService {
   constructor(
     private http: HttpClient
   ) { }
+
+
+
   getItems() {
     return this.items;
   }
@@ -33,8 +36,13 @@ export class CartService {
   }
 
   checkout(items: any[]) {
+    interface data {
+      main: string,
+      [key: string]: any,
+    }
     this.http.post(`${environment.server}/carts/`, null).subscribe(
-      data => {
+      (data: data) => {
+
         console.log(data.cart.id)
         this.http.post(`${environment.server}/products_cart/`, { cart_id: data.cart.id, products: items }).subscribe(
           response => {

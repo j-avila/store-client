@@ -6,19 +6,26 @@ import { CartService } from '../cart.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
+
 export class CartComponent implements OnInit {
   items: any[]
   order: any[]
 
   constructor(
     private cartService: CartService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.items = this.cartService.getItems();
   }
 
-  makeBuy() {
+  makeBuy(status: number, total_price: number) {
+    interface status {
+      main: string,
+      [key: string]: any,
+    }
+
     this.order = { ...this.items, status: 1, total_price: 999 }
     this.cartService.checkout(this.order)
 
