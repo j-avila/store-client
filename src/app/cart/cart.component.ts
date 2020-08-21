@@ -7,9 +7,15 @@ import { CartService } from '../cart.service';
   styleUrls: ['./cart.component.scss']
 })
 
+interface Order {
+  status: number,
+  total_price: number,
+  // [key: string]: any[],
+}
+
 export class CartComponent implements OnInit {
   items: any[]
-  order: any[]
+  order: Order
 
   constructor(
     private cartService: CartService
@@ -20,11 +26,7 @@ export class CartComponent implements OnInit {
     this.items = this.cartService.getItems();
   }
 
-  makeBuy(status: number, total_price: number) {
-    interface status {
-      main: string,
-      [key: string]: any,
-    }
+  makeBuy() {
 
     this.order = { ...this.items, status: 1, total_price: 999 }
     this.cartService.checkout(this.order)
