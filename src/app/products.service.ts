@@ -13,7 +13,6 @@ export class ProductsService {
   }
 
   getItemById(id: number) {
-    console.log(this.http.get(`${environment.server}/products${id}`))
     return this.http.get(`${environment.server}/products/${id}`)
   }
 

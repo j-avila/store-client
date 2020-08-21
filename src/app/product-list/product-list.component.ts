@@ -34,6 +34,9 @@ export class ProductListComponent {
 		window.alert('We will notify you when the product goes on sale')
 	}
 
+	onChange(event: any) {
+		this.quantity = event.target.value
+	}
 
 	addToCart(product: {}) {
 		this.productAdded = { ...product, quantity: this.quantity }

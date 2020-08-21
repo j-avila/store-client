@@ -7,7 +7,8 @@ import { CartService } from '../cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  items: any[];
+  items: any[]
+  order: any[]
 
   constructor(
     private cartService: CartService
@@ -18,6 +19,10 @@ export class CartComponent implements OnInit {
   }
 
   makeBuy() {
+    this.order = { ...this.items, status: 1, total_price: 999 }
+    this.cartService.checkout(this.order)
+
+    console.log('purchased:', this.order)
     window.alert('buy successfull!')
     this.items = []
   }

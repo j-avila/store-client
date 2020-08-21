@@ -1,7 +1,7 @@
 <div class="products-list">
 	<h2>products:</h2>
 
-	<div *ngIf="products?.length >= 0; else elseBlock">
+	<div *ngIf="products.length > 0; else elseBlock">
 		<div class="product" *ngFor="let product of products">
 			<a
 				[title]="product.name + ' details'"
@@ -10,8 +10,9 @@
 				<h3>{{ product.name }}</h3>
 			</a>
 			<label
-				>quantity: <input type="number" (ngModelChange)="(quantity)"
-			/></label>
+				>quantity:
+				<input type="number" name="quantity" (input)="onChange($event)" />
+			</label>
 			<p *ngIf="product.description">{{ product.description }}</p>
 			<div class="actions">
 				<button (click)="share()">
